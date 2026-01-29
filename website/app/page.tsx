@@ -1,298 +1,406 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
+import { motion } from "framer-motion";
+import { memo } from "react";
+import ProceduralCloud from "@/components/ProceduralCloud";
 
-const InlandOctopusPage: React.FC = () => {
+const imgRainbow = "/images/rainbow.png";
+const imgHills = "/images/hills.png";
+const imgTentaclesText = "/images/tentacles-text.png";
+const imgFrame4 = "/images/store-front.png";
+const imgLine1 = "/images/line-1.png";
+const imgLine2 = "/images/line-2.png";
+const imgLine3 = "/images/line-3.png";
+const imgRectangle3 = "/images/card-exciting-events.png";
+const imgRectangle7 = "/images/card-fantasy-fits.png";
+const imgRectangle8 = "/images/card-whacky-whatevers.png";
+const imgRectangle9 = "/images/card-outlandish-octopuses.png";
+const imgRectangle1 = "/images/hero-background.png";
+const imgEllipse1 = "/images/badge.png";
+const imgInlandoctopuslargelogo1 = "/images/logo.png";
+const imgVector = "/images/instagram.svg";
+const imgVector1 = "/images/facebook.svg";
+const imgOverlay = "/images/overlay.svg";
+
+// Memoized cloud wrapper to prevent re-renders
+const Cloud = memo(({
+  className,
+  width,
+  height,
+  fluffiness,
+  seed,
+  animClass
+}: {
+  className: string;
+  width: number;
+  height: number;
+  fluffiness: number;
+  seed: number;
+  animClass: string;
+}) => (
+  <div className={`${className} cloud ${animClass}`}>
+    <ProceduralCloud width={width} height={height} fluffiness={fluffiness} seed={seed} className="w-full h-full" />
+  </div>
+));
+Cloud.displayName = 'Cloud';
+
+export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
-        <div className="flex items-center space-x-8">
-          <div className="flex items-center">
-            <div className="w-12 h-8 bg-gradient-to-r from-orange-400 via-yellow-400 to-green-400 rounded-sm mr-3"></div>
-            <span className="text-lg font-medium text-gray-800">Inland Octopus</span>
+    <div className="relative w-full min-h-screen bg-[#f5f5f5] overflow-x-hidden">
+      <div
+        className="absolute top-0 left-0 w-full"
+        style={{
+          background: `linear-gradient(180deg,
+            #f5f5f5 0%,
+            #f5f5f5 12%,
+            #d4e9f7 16%,
+            #a8d4f0 20%,
+            #7ec8ed 25%,
+            #5bbde9 30%,
+            #49aeec 40%,
+            #3da5e8 55%,
+            #4aabea 70%,
+            #5db5ed 85%,
+            #70bfef 100%
+          )`,
+          height: '4379px',
+          zIndex: 0
+        }}
+      />
+
+      {/* Subtle atmospheric haze overlay */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 150% 50% at 50% 60%, rgba(255,255,255,0.15) 0%, transparent 70%)',
+          height: '4379px',
+          zIndex: 1
+        }}
+      />
+
+      {/* Sun glow effect */}
+      <div
+        className="absolute pointer-events-none sun-glow"
+        style={{
+          top: '600px',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '800px',
+          height: '800px',
+          background: 'radial-gradient(circle, rgba(255,248,220,0.5) 0%, rgba(255,223,150,0.2) 30%, transparent 70%)',
+          zIndex: 2,
+          mixBlendMode: 'soft-light'
+        }}
+      />
+
+      {/* Fixed Navbar */}
+      <nav className="fixed top-0 left-0 w-full h-[80px] z-[100] bg-white/90 backdrop-blur-sm shadow-sm">
+        <div className="relative w-full max-w-[1440px] mx-auto h-full px-[60px] flex items-center justify-between">
+          <div className="flex items-center gap-[30px]">
+            <div className="w-[94.526px] h-[46px] rounded-[15px] overflow-hidden">
+              <img
+                alt="Inland Octopus Logo"
+                className="w-full h-full object-cover"
+                src={imgInlandoctopuslargelogo1}
+              />
+            </div>
+            <div className="flex items-center gap-[30px]">
+              <p className="font-medium text-[16px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
+                Welcome
+              </p>
+              <p className="font-medium text-[16px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
+                Gift Certificates
+              </p>
+            </div>
           </div>
-          <Link href="/" className="text-gray-600 hover:text-gray-900">Welcome</Link>
-          <Link href="/gift-certificates" className="text-gray-600 hover:text-gray-900">Gift Certificates</Link>
+          <button className="bg-[#49aeec] h-[37px] w-[120px] rounded-[8px] cursor-pointer hover:bg-[#3facde] transition-colors">
+            <span className="font-medium text-[16px] text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Visit Us!
+            </span>
+          </button>
         </div>
-        <button className="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition-colors">
-          Visit Us!
-        </button>
       </nav>
 
-      {/* Hero Section with Video Placeholder */}
-      <div className="relative">
-        <div className="h-[80vh] bg-gradient-to-br from-amber-800 via-teal-600 to-indigo-800 flex items-center justify-center relative overflow-hidden rounded-lg mx-6 mt-6">
-          <div className="text-white text-lg font-medium">[train video here]</div>
-          
-          {/* Hero Text Overlay */}
-          <div className="absolute bottom-8 left-8 text-white">
-            <h1 className="text-6xl font-bold mb-2">Inland Octopus</h1>
-            <p className="text-xl uppercase tracking-wider">A Toy Shop As It Was Meant To Be</p>
+      <div className="relative w-[1440px] mx-auto z-10" style={{ height: '4118px' }}>
+
+        {/* Hero Section */}
+        <div className="absolute left-[60px] top-[100px] w-[1320px] h-[708px] z-10 overflow-hidden rounded-[40px] group" style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.5)' }}>
+          <div className="relative w-full h-full">
+            <img
+              alt="Hero background"
+              className="w-full h-full object-cover"
+              src={imgRectangle1}
+            />
+            <div className="absolute inset-0">
+              <img alt="" className="w-full h-full" src={imgOverlay} />
+            </div>
+            <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-[28px] text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+              [train video here]
+            </p>
           </div>
 
-          {/* Logo Badge */}
-          <div className="absolute bottom-8 right-8">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
-              <div className="w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-bold">IO</span>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="absolute left-[40px] bottom-[100px] z-20"
+          >
+            <p
+              className="text-[#f5f5f5] text-[100px]"
+              style={{ fontFamily: 'Cooper Black, serif', lineHeight: '0.9', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+            >
+              Inland Octopus
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            viewport={{ once: true }}
+            className="absolute left-[40px] top-[620px] z-20"
+          >
+            <p
+              className="text-[#f5f5f5] text-[42px] tracking-wider"
+              style={{ fontFamily: 'Copperplate, Copperplate Gothic Light, fantasy', lineHeight: '0.9', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+            >
+              UNIQUE TOYS AND GIFTS
+            </p>
+          </motion.div>
+
+          <div className="absolute right-[40px] bottom-[40px] w-[141px] h-[141px] animate-popIn" style={{ animationDelay: '0.6s' }}>
+            <img
+              alt="Badge"
+              className="w-full h-full animate-spin [animation-play-state:paused] group-hover:[animation-play-state:running]"
+              style={{ animationDuration: '3s' }}
+              src={imgEllipse1}
+            />
+          </div>
+        </div>
+
+        {/* Clouds - Using CSS animations instead of framer-motion */}
+        {/* Cloud-12 */}
+        <Cloud className="absolute left-[-150px] top-[691px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.5} seed={12} animClass="cloud-anim-1" />
+
+        {/* Cloud-Extra-1 */}
+        <Cloud className="absolute left-[1000px] top-[680px] w-[530px] h-[310px] pointer-events-none" width={530} height={310} fluffiness={2} seed={42} animClass="cloud-anim-2" />
+
+        {/* Gallery Section */}
+        <div className="absolute left-[180.5px] top-[931px] w-full h-[1680px]">
+          <div className="absolute left-[207px] top-[161px] w-[755px] h-[489px] pointer-events-none">
+            <img alt="" className="w-full h-full object-cover" src={imgLine1} />
+          </div>
+          <div className="absolute left-[191px] top-[547px] w-[499px] h-[496px] pointer-events-none">
+            <img alt="" className="w-full h-full object-cover" src={imgLine2} />
+          </div>
+          <div className="absolute left-[399px] top-[1104px] w-[633px] h-[351px] pointer-events-none">
+            <img alt="" className="w-full h-full object-cover" src={imgLine3} />
+          </div>
+
+          {/* Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-0 top-0 w-[367px] h-[487px] cursor-pointer group"
+            style={{ transform: 'rotate(-2deg)' }}
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <img alt="Exciting Events" className="absolute w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle3} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
-          </div>
+            <p className="absolute left-[23px] bottom-[20px] text-gray-800 text-[24px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Exciting Events
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[594px] top-[464px] w-[367px] h-[487px] cursor-pointer group"
+            style={{ transform: 'rotate(1deg)' }}
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <img alt="Fantasy Fits" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle7} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[23px] bottom-[20px] text-gray-800 text-[24px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Fantasy Fits
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[107px] top-[752px] w-[367px] h-[487px] cursor-pointer group"
+            style={{ transform: 'rotate(-1deg)' }}
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <img alt="Whacky Whatevers" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle8} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[23px] bottom-[20px] text-gray-800 text-[24px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Whacky Whatevers
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[714px] top-[1195px] w-[365px] h-[485px] cursor-pointer group"
+            style={{ transform: 'rotate(2deg)' }}
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <img alt="Outlandish Octopuses" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle9} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[23px] bottom-[20px] text-gray-800 text-[24px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Outlandish Octopuses*
+            </p>
+          </motion.div>
+        </div>
+
+        {/* More clouds with CSS animations */}
+        <Cloud className="absolute left-[850px] top-[800px] w-[630px] h-[490px] pointer-events-none" width={630} height={490} fluffiness={2.5} seed={10} animClass="cloud-anim-3" />
+        <Cloud className="absolute left-[1020px] top-[1000px] w-[670px] h-[365px] pointer-events-none" width={670} height={365} fluffiness={2.2} seed={11} animClass="cloud-anim-4" />
+        <Cloud className="absolute left-[380px] top-[1180px] w-[700px] h-[390px] pointer-events-none" width={700} height={390} fluffiness={2.3} seed={9} animClass="cloud-anim-1" />
+        <Cloud className="absolute left-[980px] top-[1300px] w-[870px] h-[530px] pointer-events-none" width={870} height={530} fluffiness={2.8} seed={8} animClass="cloud-anim-2" />
+        <Cloud className="absolute left-[-80px] top-[1470px] w-[755px] h-[530px] pointer-events-none" width={755} height={530} fluffiness={2.6} seed={7} animClass="cloud-anim-3" />
+        <Cloud className="absolute left-[1050px] top-[1800px] w-[670px] h-[390px] pointer-events-none" width={670} height={390} fluffiness={2.3} seed={66} animClass="cloud-anim-4" />
+        <Cloud className="absolute left-[500px] top-[2000px] w-[670px] h-[380px] pointer-events-none" width={670} height={380} fluffiness={2.3} seed={5} animClass="cloud-anim-5" />
+        <Cloud className="absolute left-[-230px] top-[2000px] w-[560px] h-[350px] pointer-events-none" width={560} height={350} fluffiness={2.1} seed={77} animClass="cloud-anim-6" />
+        <Cloud className="absolute left-[-150px] top-[2160px] w-[770px] h-[560px] pointer-events-none" width={770} height={560} fluffiness={2.7} seed={3} animClass="cloud-anim-1" />
+        <Cloud className="absolute left-[1070px] top-[2310px] w-[730px] h-[365px] pointer-events-none" width={730} height={365} fluffiness={2.4} seed={4} animClass="cloud-anim-2" />
+        <Cloud className="absolute left-[80px] top-[2340px] w-[785px] h-[475px] pointer-events-none" width={785} height={475} fluffiness={2.6} seed={2} animClass="cloud-anim-3" />
+
+        {/* Rainbow */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-[2797px] w-[1520px] h-[847px] pointer-events-none">
+          <img alt="" className="w-full h-full object-cover" src={imgRainbow} />
+        </div>
+
+        {/* Large clouds near rainbow */}
+        <Cloud className="absolute left-[820px] top-[2620px] w-[1260px] h-[755px] pointer-events-none" width={1260} height={755} fluffiness={3} seed={15} animClass="cloud-anim-4" />
+        <Cloud className="absolute left-[-280px] top-[2770px] w-[870px] h-[475px] pointer-events-none" width={870} height={475} fluffiness={2.6} seed={13} animClass="cloud-anim-5" />
+        <Cloud className="absolute left-[230px] top-[2700px] w-[770px] h-[490px] pointer-events-none" width={770} height={490} fluffiness={2.5} seed={99} animClass="cloud-anim-6" />
+        <Cloud className="absolute left-[-160px] top-[2950px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.4} seed={100} animClass="cloud-anim-1" />
+
+        {/* Hills */}
+        <div className="absolute left-[-48px] top-[3187px] w-[1536px] h-[1024px] pointer-events-none z-10">
+          <img alt="" className="w-full h-full object-cover" src={imgHills} />
         </div>
       </div>
 
-      {/* Cloud Section with Product Categories */}
-      <div className="relative bg-gradient-to-b from-sky-300 to-sky-400 min-h-screen py-16">
-        {/* Floating Clouds */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Top Left Cloud */}
-          <svg className="absolute top-8 left-12 w-48 h-32" viewBox="0 0 200 120" fill="none">
-            <path d="M40 80C20 80 4 64 4 44C4 24 20 8 40 8C45 8 50 9 54 11C60 4 70 0 80 0C100 0 116 16 116 36C120 36 124 37 128 38C144 42 156 56 156 72C156 92 140 108 120 108H50C44 108 40 104 40 98V80Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4p</div>x 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Top Right Cloud */}
-          <svg className="absolute top-16 right-16 w-56 h-36" viewBox="0 0 220 140" fill="none">
-            <path d="M50 100C25 100 5 80 5 55C5 30 25 10 50 10C58 10 65 12 71 16C80 6 94 0 110 0C135 0 156 21 156 46C162 46 168 47 173 50C194 56 210 75 210 97C210 123 189 144 163 144H65C57 144 50 137 50 129V100Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Middle Left Cloud */}
-          <svg className="absolute top-64 left-8 w-44 h-28" viewBox="0 0 180 110" fill="none">
-            <path d="M35 75C18 75 4 61 4 44C4 27 18 13 35 13C40 13 44 14 48 16C53 8 62 3 72 3C87 3 99 15 99 30C102 30 105 30 108 31C121 34 131 45 131 58C131 74 118 87 102 87H45C40 87 35 82 35 77V75Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Middle Right Large Cloud */}
-          <svg className="absolute top-48 right-20 w-52 h-34" viewBox="0 0 210 135" fill="none">
-            <path d="M45 95C22 95 4 77 4 54C4 31 22 13 45 13C52 13 58 15 63 18C71 7 83 0 97 0C118 0 135 17 135 38C140 38 145 39 149 41C167 46 181 62 181 81C181 104 162 123 139 123H60C53 123 45 116 45 109V95Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Bottom Left Small Cloud */}
-          <svg className="absolute bottom-40 left-16 w-36 h-24" viewBox="0 0 150 95" fill="none">
-            <path d="M30 65C15 65 3 53 3 38C3 23 15 11 30 11C34 11 37 12 40 13C44 6 51 2 59 2C71 2 81 12 81 24C83 24 85 24 87 25C96 27 103 35 103 44C103 56 93 66 81 66H38C34 66 30 62 30 58V65Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Bottom Right Cloud */}
-          <svg className="absolute bottom-32 right-12 w-50 h-32" viewBox="0 0 200 125" fill="none">
-            <path d="M42 88C21 88 4 71 4 50C4 29 21 12 42 12C48 12 53 13 58 15C65 6 76 0 88 0C107 0 122 15 122 34C126 34 130 35 134 36C148 40 159 52 159 66C159 84 144 99 126 99H54C48 99 42 93 42 87V88Z" 
-                  fill="white" fillOpacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
-          </svg>
-
-          {/* Additional Smaller Clouds for Depth */}
-          <svg className="absolute top-32 left-1/3 w-32 h-20" viewBox="0 0 130 80" fill="none">
-            <path d="M25 55C12 55 2 45 2 32C2 19 12 9 25 9C28 9 31 10 33 11C36 5 42 2 48 2C58 2 66 10 66 20C68 20 69 20 71 21C78 23 83 29 83 36C83 45 76 52 67 52H32C29 52 25 49 25 46V55Z" 
-                  fill="white" fillOpacity="0.85" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))"/>
-          </svg>
-
-          <svg className="absolute bottom-60 right-1/3 w-28 h-18" viewBox="0 0 115 75" fill="none">
-            <path d="M22 52C11 52 2 43 2 32C2 21 11 12 22 12C25 12 27 13 29 14C32 8 37 5 43 5C51 5 57 11 57 19C58 19 60 19 61 20C67 22 71 27 71 33C71 41 65 47 58 47H29C26 47 22 44 22 41V52Z" 
-                  fill="white" fillOpacity="0.85" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))"/>
-          </svg>
-        </div>
-
-        {/* Dotted Flight Paths */}
-        <svg className="absolute inset-0 w-full h-full" style={{pointerEvents: 'none'}}>
-          <path 
-            d="M 200 150 Q 400 100 600 200 Q 800 250 1000 180" 
-            stroke="black" 
-            strokeWidth="3" 
-            strokeDasharray="8,8" 
-            fill="none"
-            opacity="0.6"
-          />
-          <path 
-            d="M 150 350 Q 350 300 550 400 Q 750 450 950 380" 
-            stroke="black" 
-            strokeWidth="3" 
-            strokeDasharray="8,8" 
-            fill="none"
-            opacity="0.6"
-          />
-        </svg>
-
-        {/* Product Category Cards */}
-        <div className="relative z-10 container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
-            
-            {/* Exciting Events */}
-            <div className="relative">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                <div className="h-48 bg-gray-200 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200"></div>
-                  <div className="absolute bottom-4 left-4 text-sm text-gray-600">Storefront with chalkboard sign</div>
-                </div>
-                <div className="absolute bottom-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">
-                  Exciting Events
-                </div>
-              </div>
-            </div>
-
-            {/* Fantasy Fits */}
-            <div className="relative lg:mt-16">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                <div className="h-48 bg-gray-200 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-200"></div>
-                  <div className="absolute bottom-4 left-4 text-sm text-gray-600">Costumes and dress-up items</div>
-                </div>
-                <div className="absolute bottom-4 left-4 bg-purple-500 text-white px-3 py-1 rounded-full font-semibold">
-                  Fantasy Fits
-                </div>
-              </div>
-            </div>
-
-            {/* Whacky Whatevers */}
-            <div className="relative">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                <div className="h-48 bg-gray-200 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-100 to-orange-200"></div>
-                  <div className="absolute bottom-4 left-4 text-sm text-gray-600">Bubble maker and rainbow</div>
-                </div>
-                <div className="absolute bottom-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full font-semibold">
-                  Whacky Whatevers
-                </div>
-              </div>
-            </div>
-
-            {/* Outlandish Octopuses */}
-            <div className="relative lg:col-start-2 lg:mt-8">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                <div className="h-48 bg-gray-200 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-blue-200"></div>
-                  <div className="absolute bottom-4 left-4 text-sm text-gray-600">Plush octopus toys</div>
-                </div>
-                <div className="absolute bottom-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full font-semibold">
-                  Outlandish Octopuses®
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Underwater Section */}
-      <div className="relative bg-gradient-to-b from-blue-400 to-blue-600 py-20">
-        {/* Octopus Tentacles */}
-        <div className="absolute inset-0 overflow-hidden">
-          <svg className="absolute bottom-0 left-0" width="300" height="200" viewBox="0 0 300 200">
-            <path d="M0 200 Q50 150 100 180 Q150 120 200 160 Q250 100 300 140" 
-                  fill="none" stroke="#7c3aed" strokeWidth="40" opacity="0.8"/>
-            <circle cx="20" cy="190" r="8" fill="#f472b6"/>
-            <circle cx="80" cy="170" r="8" fill="#f472b6"/>
-            <circle cx="140" cy="150" r="8" fill="#f472b6"/>
-            <circle cx="200" cy="140" r="8" fill="#f472b6"/>
-            <circle cx="260" cy="130" r="8" fill="#f472b6"/>
-          </svg>
-          
-          <svg className="absolute bottom-0 right-0" width="300" height="200" viewBox="0 0 300 200">
-            <path d="M300 200 Q250 150 200 180 Q150 120 100 160 Q50 100 0 140" 
-                  fill="none" stroke="#7c3aed" strokeWidth="40" opacity="0.8"/>
-            <circle cx="280" cy="190" r="8" fill="#f472b6"/>
-            <circle cx="220" cy="170" r="8" fill="#f472b6"/>
-            <circle cx="160" cy="150" r="8" fill="#f472b6"/>
-            <circle cx="100" cy="140" r="8" fill="#f472b6"/>
-            <circle cx="40" cy="130" r="8" fill="#f472b6"/>
-          </svg>
-        </div>
-
-        {/* Sea Floor */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-700 to-blue-600"></div>
-        
-        {/* Coral and Sea Life */}
-        <div className="absolute bottom-0 left-0 right-0 h-20">
-          <div className="flex justify-around items-end h-full px-8">
-            <div className="w-6 h-12 bg-pink-400 rounded-t-full"></div>
-            <div className="w-4 h-8 bg-orange-400 rounded-t-full"></div>
-            <div className="w-8 h-16 bg-green-400 rounded-t-full"></div>
-            <div className="w-5 h-10 bg-blue-300 rounded-t-full"></div>
-            <div className="w-7 h-14 bg-yellow-400 rounded-t-full"></div>
-            <div className="w-6 h-11 bg-purple-400 rounded-t-full"></div>
-            <div className="w-4 h-9 bg-pink-300 rounded-t-full"></div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="relative z-10 text-center text-white px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-            Walla Walla's premier<br/>
-            purveyor of fun,<br/>
-            foolishness, & always<br/>
-            free gift wrapping<br/>
-            since 2004.
-          </h2>
-        </div>
+      {/* Tentacles & Text Section */}
+      <div className="absolute left-0 top-[2844px] w-full h-[1274px] z-20">
+        <img alt="" className="w-full h-full object-cover" src={imgTentaclesText} />
+        <p
+          className="absolute left-1/2 -translate-x-1/2 top-[410px] w-[476px] text-center text-white text-[40px] z-30"
+          style={{ fontFamily: 'Cooper Black, serif' }}
+        >
+          {`Walla Walla's premier purveyor of fun, foolishness, & always free gift wrapping since 2004.`}
+        </p>
       </div>
 
       {/* Location Section */}
-      <div className="bg-gradient-to-b from-yellow-100 to-orange-100 py-16">
-        <div className="container mx-auto px-6">
-          <h3 className="text-4xl font-bold text-center mb-12 text-gray-800">
-            Find us in beautiful downtown Walla Walla!
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Store Photo */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="h-64 bg-gray-300 flex items-center justify-center">
-                <span className="text-gray-600">Store Front Photo</span>
-              </div>
-            </div>
-            
-            {/* Map */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden relative">
-              <div className="h-64 bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-600">Interactive Map</span>
-              </div>
-              <div className="absolute inset-0 bg-blue-100 opacity-50"></div>
-              <div className="absolute top-4 right-4 bg-white px-3 py-2 rounded shadow text-sm">
-                [this will be an<br/>
-                interactive map<br/>
-                on the real site]
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center mt-8">
-            <p className="text-xl font-semibold text-gray-800 mb-2">
-              7 E Main St, Walla Walla, WA 99362
+      <div className="relative w-full z-20">
+        <div
+          className="relative w-full bg-[#e0dbc0] overflow-hidden"
+          style={{
+            borderBottomLeftRadius: '40px',
+            borderBottomRightRadius: '40px',
+            boxShadow: '0px -10px 20px 0px rgba(0,0,0,0.25), 0px 10px 20px 0px rgba(0,0,0,0.25)'
+          }}
+        >
+          <div className="relative w-full max-w-[1440px] mx-auto h-[824px]">
+            <p
+              className="absolute left-1/2 -translate-x-1/2 top-[86px] text-center text-black text-[48px] whitespace-nowrap"
+              style={{ fontFamily: 'Cooper Black, serif' }}
+            >
+              Find us in beautiful downtown Walla Walla!
             </p>
-            <p className="text-lg text-gray-600">
-              Open 10-5 Tuesday through Sunday
-            </p>
+
+            <div
+              className="absolute left-[132px] top-[211px] w-[558px] h-[389px] rounded-[40px] overflow-hidden"
+              style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
+            >
+              <img
+                alt="Store front"
+                className="absolute left-0 top-0 w-[106.13%] h-[109.07%] object-cover"
+                src={imgFrame4}
+              />
+            </div>
+
+            <div
+              className="absolute left-[750px] top-[211px] w-[558px] h-[389px] rounded-[40px] overflow-hidden"
+              style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
+            >
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Inland%20Octopus%20Walla%20Walla&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+              ></iframe>
+            </div>
+
+            <div className="absolute left-1/2 -translate-x-1/2 top-[650px] text-center">
+              <p className="font-bold text-[24px] text-black mb-[10px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+                7 E Main St, Walla Walla, WA 99362
+              </p>
+              <p className="font-light text-[24px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
+                Open 10-5 Tuesday through Sunday
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-sky-400 py-8">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex justify-center space-x-4 mb-4">
-            <a href="#" className="text-white hover:text-gray-200">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
+      <div className="relative w-full bg-[#49aeec] z-20">
+        <div className="relative w-full mx-auto flex flex-col items-center justify-center py-20 gap-[25px]">
+          <div className="flex gap-[10px]">
+            <a href="https://www.instagram.com/inlandoctopus/" className="block w-[30px] h-[30px]">
+              <img alt="Instagram" className="w-full h-full" src={imgVector} />
             </a>
-            <a href="#" className="text-white hover:text-gray-200">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-              </svg>
+            <a href="https://www.facebook.com/pages/Inland%20Octopus/166042136742420/#" className="block w-[30px] h-[30px]">
+              <img alt="Facebook" className="w-full h-full" src={imgVector1} />
             </a>
           </div>
-          
-          <p className="text-white text-sm mb-2">
-            * Yes, it is Octopuses (not Octopi). I promise. But Octopi is a fun word!
+          <p className="w-[595px] text-center text-white text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+            *Yes, it is Octopuses (not Octopi). I promise. But Octopi is a fun word!
           </p>
-          
-          <p className="text-white text-sm">
-            © 2025 Inland Octopus. Made with &lt;3
+          <p className="w-[595px] text-center text-white text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+            {`© 2025 Inland Octopus. Made with <3`}
           </p>
         </div>
-      </footer>
+      </div>
     </div>
   );
-};
-
-export default InlandOctopusPage;
+}
