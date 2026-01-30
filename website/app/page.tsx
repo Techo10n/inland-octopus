@@ -1,6 +1,8 @@
 'use client';
+
 import { motion } from "framer-motion";
 import { memo } from "react";
+import Navbar from "@/components/Navbar";
 import ProceduralCloud from "@/components/ProceduralCloud";
 
 const imgRainbow = "/images/rainbow.png";
@@ -16,7 +18,7 @@ const imgRectangle8 = "/images/card-whacky-whatevers.png";
 const imgRectangle9 = "/images/card-outlandish-octopuses.png";
 const imgRectangle1 = "/images/hero-background.png";
 const imgEllipse1 = "/images/badge.png";
-const imgInlandoctopuslargelogo1 = "/images/logo.png";
+// const imgInlandoctopuslargelogo1 = "/images/logo.png"; // Moved to Navbar
 const imgVector = "/images/instagram.svg";
 const imgVector1 = "/images/facebook.svg";
 const imgOverlay = "/images/overlay.svg";
@@ -44,6 +46,8 @@ const Cloud = memo(({
 Cloud.displayName = 'Cloud';
 
 export default function Home() {
+  // handleScrollToLocation removed - handled by Navbar Link
+
   return (
     <div className="relative w-full min-h-screen bg-[#f5f5f5] overflow-x-hidden">
       <div
@@ -93,32 +97,7 @@ export default function Home() {
       />
 
       {/* Fixed Navbar */}
-      <nav className="fixed top-0 left-0 w-full h-[80px] z-[100] bg-white/90 backdrop-blur-sm shadow-sm">
-        <div className="relative w-full max-w-[1440px] mx-auto h-full px-[60px] flex items-center justify-between">
-          <div className="flex items-center gap-[30px]">
-            <div className="w-[94.526px] h-[46px] rounded-[15px] overflow-hidden">
-              <img
-                alt="Inland Octopus Logo"
-                className="w-full h-full object-cover"
-                src={imgInlandoctopuslargelogo1}
-              />
-            </div>
-            <div className="flex items-center gap-[30px]">
-              <p className="font-medium text-[16px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Welcome
-              </p>
-              <p className="font-medium text-[16px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Gift Certificates
-              </p>
-            </div>
-          </div>
-          <button className="bg-[#49aeec] h-[37px] w-[120px] rounded-[8px] cursor-pointer hover:bg-[#3facde] transition-colors">
-            <span className="font-medium text-[16px] text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Visit Us!
-            </span>
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="relative w-[1440px] mx-auto z-10" style={{ height: '4118px' }}>
 
@@ -330,6 +309,7 @@ export default function Home() {
       {/* Location Section */}
       <div className="relative w-full z-20">
         <div
+          id="location"
           className="relative w-full bg-[#e0dbc0] overflow-hidden"
           style={{
             borderBottomLeftRadius: '40px',

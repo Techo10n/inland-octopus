@@ -210,9 +210,9 @@ const ProceduralCloud: React.FC<ProceduralCloudProps> = memo(({
 }, (prevProps, nextProps) => {
   // Custom comparison - only re-render if these specific props change
   return prevProps.width === nextProps.width &&
-         prevProps.height === nextProps.height &&
-         prevProps.seed === nextProps.seed &&
-         prevProps.fluffiness === nextProps.fluffiness;
+    prevProps.height === nextProps.height &&
+    prevProps.seed === nextProps.seed &&
+    prevProps.fluffiness === nextProps.fluffiness;
 });
 
 ProceduralCloud.displayName = 'ProceduralCloud';
