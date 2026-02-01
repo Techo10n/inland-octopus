@@ -67,8 +67,8 @@ const ProceduralCloud: React.FC<ProceduralCloudProps> = memo(({
     const centerX = width * 0.5;
     const centerY = height * 0.5;
 
-    // Reduced particle count (~85% of original)
-    const baseParticles = 85;
+    // Optimized particle count
+    const baseParticles = 45;
     const numParticles = Math.floor(baseParticles * fluffiness);
     const particles: Particle[] = [];
 
@@ -143,15 +143,15 @@ const ProceduralCloud: React.FC<ProceduralCloudProps> = memo(({
 
       const sizeVariation = random();
       let baseRadius: number;
-      if (sizeVariation < 0.18) {
-        baseRadius = Math.min(safeWidth, safeHeight) * (0.16 + random() * 0.1);
-      } else if (sizeVariation < 0.5) {
-        baseRadius = Math.min(safeWidth, safeHeight) * (0.08 + random() * 0.08);
+      if (sizeVariation < 0.25) {
+        baseRadius = Math.min(safeWidth, safeHeight) * (0.24 + random() * 0.14);
+      } else if (sizeVariation < 0.6) {
+        baseRadius = Math.min(safeWidth, safeHeight) * (0.14 + random() * 0.12);
       } else {
-        baseRadius = Math.min(safeWidth, safeHeight) * (0.04 + random() * 0.05);
+        baseRadius = Math.min(safeWidth, safeHeight) * (0.08 + random() * 0.08);
       }
 
-      baseRadius *= fluffiness * 0.6;
+      baseRadius *= fluffiness * 0.5;
       const radius = Math.min(baseRadius, maxRadius);
 
       const falloff = getOpacityFalloff(x, y);
@@ -164,14 +164,13 @@ const ProceduralCloud: React.FC<ProceduralCloudProps> = memo(({
     // Sort by size (back to front)
     particles.sort((a, b) => b.radius - a.radius);
 
-    // Draw particles with simplified gradients (4 stops instead of 6)
+    // Draw particles with simplified gradients (3 stops for performance)
     particles.forEach((p) => {
       ctx.beginPath();
       const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
 
-      gradient.addColorStop(0, `rgba(${color}, ${p.opacity * 0.85})`);
-      gradient.addColorStop(0.3, `rgba(${color}, ${p.opacity * 0.5})`);
-      gradient.addColorStop(0.7, `rgba(${color}, ${p.opacity * 0.15})`);
+      gradient.addColorStop(0, `rgba(${color}, ${p.opacity * 0.8})`);
+      gradient.addColorStop(0.5, `rgba(${color}, ${p.opacity * 0.25})`);
       gradient.addColorStop(1, `rgba(${color}, 0)`);
 
       ctx.fillStyle = gradient;
@@ -179,23 +178,6 @@ const ProceduralCloud: React.FC<ProceduralCloudProps> = memo(({
       ctx.fill();
     });
 
-    // Simplified highlights (fewer, no extra loop)
-    const highlightCount = Math.floor(numParticles * 0.08);
-    for (let i = 0; i < highlightCount; i++) {
-      const hp = particles[i];
-      if (!hp || hp.radius < 20) continue;
-
-      ctx.beginPath();
-      const hg = ctx.createRadialGradient(
-        hp.x - hp.radius * 0.15, hp.y - hp.radius * 0.15, 0,
-        hp.x, hp.y, hp.radius * 0.4
-      );
-      hg.addColorStop(0, `rgba(255, 255, 255, ${hp.opacity * 0.12})`);
-      hg.addColorStop(1, `rgba(255, 255, 255, 0)`);
-      ctx.fillStyle = hg;
-      ctx.arc(hp.x - hp.radius * 0.08, hp.y - hp.radius * 0.08, hp.radius * 0.35, 0, Math.PI * 2);
-      ctx.fill();
-    }
   }, [width, height, seed, color, fluffiness]);
 
   return (

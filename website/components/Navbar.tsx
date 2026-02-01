@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const imgLogo = "/images/logo.png";
@@ -19,11 +20,14 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full h-[80px] z-[100] bg-white/90 backdrop-blur-sm shadow-sm">
       <div className="relative w-full max-w-[1440px] mx-auto h-full px-[60px] flex items-center justify-between">
         <div className="flex items-center gap-[30px]">
-          <Link href="/" className="w-[94.526px] h-[46px] rounded-[15px] overflow-hidden">
-            <img
+          <Link href="/" className="relative w-[94.526px] h-[46px] rounded-[15px] overflow-hidden">
+            <Image
               alt="Inland Octopus Logo"
-              className="w-full h-full object-cover"
+              className="object-cover"
               src={imgLogo}
+              fill
+              sizes="95px"
+              priority
             />
           </Link>
           <div className="flex items-center gap-[30px]">

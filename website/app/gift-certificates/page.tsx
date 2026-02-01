@@ -1,8 +1,8 @@
 'use client';
 
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
-// const imgLogo = "/images/logo.png"; // Moved to Navbar
 const imgGiftCardBg = "/images/gift-card-bg.png";
 const imgGiftCardRibbon = "/images/gift-card-ribbon.png";
 const imgInstagram = "/images/instagram.svg";
@@ -32,19 +32,24 @@ export default function GiftCertificates() {
               className="absolute inset-0 rounded-[40px] overflow-hidden"
               style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.5)' }}
             >
-              <img
+              <Image
                 alt="Gift card background"
-                className="w-full h-full object-cover"
+                className="object-cover"
                 src={imgGiftCardBg}
+                fill
+                sizes="1320px"
+                priority
               />
             </div>
 
             {/* Ribbon Overlay */}
             <div className="absolute inset-0 rounded-[40px] overflow-hidden">
-              <img
+              <Image
                 alt="Gift card ribbon"
-                className="w-full h-full object-cover"
+                className="object-cover"
                 src={imgGiftCardRibbon}
+                fill
+                sizes="1320px"
               />
             </div>
 

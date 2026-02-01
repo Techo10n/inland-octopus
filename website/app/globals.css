@@ -114,20 +114,9 @@ html {
   animation: popIn 0.5s ease-out forwards;
 }
 
-/* Sun glow effect */
-@keyframes sunPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 0.5;
-  }
-}
-
+/* Sun glow - static for performance */
 .sun-glow {
-  animation: sunPulse 8s ease-in-out infinite;
+  /* Animation removed for performance */
 }
 
 /* Cloud subtle glow */
@@ -144,46 +133,17 @@ html {
   box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
-/* GPU-accelerated cloud animations */
+/* Static clouds - no animations */
 .cloud {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
-@keyframes cloudFloat1 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(5px, -10px, 0); }
+/* Cloud animation classes kept for compatibility but no animations applied */
+.cloud-anim-1,
+.cloud-anim-2,
+.cloud-anim-3,
+.cloud-anim-4,
+.cloud-anim-5,
+.cloud-anim-6 {
+  /* Static - no animation */
 }
-
-@keyframes cloudFloat2 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-4px, -8px, 0); }
-}
-
-@keyframes cloudFloat3 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(7px, -12px, 0); }
-}
-
-@keyframes cloudFloat4 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-5px, -9px, 0); }
-}
-
-@keyframes cloudFloat5 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(4px, -7px, 0); }
-}
-
-@keyframes cloudFloat6 {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-6px, -11px, 0); }
-}
-
-.cloud-anim-1 { animation: cloudFloat1 7s ease-in-out infinite; }
-.cloud-anim-2 { animation: cloudFloat2 9s ease-in-out infinite; }
-.cloud-anim-3 { animation: cloudFloat3 6s ease-in-out infinite; }
-.cloud-anim-4 { animation: cloudFloat4 8s ease-in-out infinite; }
-.cloud-anim-5 { animation: cloudFloat5 7.5s ease-in-out infinite; }
-.cloud-anim-6 { animation: cloudFloat6 6.5s ease-in-out infinite; }

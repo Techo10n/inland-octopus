@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { memo } from "react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import ProceduralCloud from "@/components/ProceduralCloud";
 
@@ -104,10 +105,13 @@ export default function Home() {
         {/* Hero Section */}
         <div className="absolute left-[60px] top-[100px] w-[1320px] h-[708px] z-10 overflow-hidden rounded-[40px] group" style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.5)' }}>
           <div className="relative w-full h-full">
-            <img
+            <Image
               alt="Hero background"
-              className="w-full h-full object-cover"
+              className="object-cover"
               src={imgRectangle1}
+              fill
+              priority
+              sizes="1320px"
             />
             <div className="absolute inset-0">
               <img alt="" className="w-full h-full" src={imgOverlay} />
@@ -147,49 +151,66 @@ export default function Home() {
           </motion.div>
 
           <div className="absolute right-[40px] bottom-[40px] w-[141px] h-[141px] animate-popIn" style={{ animationDelay: '0.6s' }}>
-            <img
+            <Image
               alt="Badge"
-              className="w-full h-full animate-spin [animation-play-state:paused] group-hover:[animation-play-state:running]"
+              className="animate-spin [animation-play-state:paused] group-hover:[animation-play-state:running]"
               style={{ animationDuration: '3s' }}
               src={imgEllipse1}
+              width={141}
+              height={141}
             />
           </div>
         </div>
 
-        {/* Clouds - Using CSS animations instead of framer-motion */}
-        {/* Cloud-12 */}
+        {/* Clouds */}
         <Cloud className="absolute left-[-150px] top-[691px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.5} seed={12} animClass="cloud-anim-1" />
-
-        {/* Cloud-Extra-1 */}
         <Cloud className="absolute left-[1000px] top-[680px] w-[530px] h-[310px] pointer-events-none" width={530} height={310} fluffiness={2} seed={42} animClass="cloud-anim-2" />
 
         {/* Gallery Section */}
         <div className="absolute left-[180.5px] top-[931px] w-full h-[1680px]">
-          <div className="absolute left-[207px] top-[161px] w-[755px] h-[489px] pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[207px] top-[161px] w-[755px] h-[489px] pointer-events-none"
+          >
             <img alt="" className="w-full h-full object-cover" src={imgLine1} />
-          </div>
-          <div className="absolute left-[191px] top-[547px] w-[499px] h-[496px] pointer-events-none">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[191px] top-[547px] w-[499px] h-[496px] pointer-events-none"
+          >
             <img alt="" className="w-full h-full object-cover" src={imgLine2} />
-          </div>
-          <div className="absolute left-[399px] top-[1104px] w-[633px] h-[351px] pointer-events-none">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="absolute left-[399px] top-[1104px] w-[633px] h-[351px] pointer-events-none"
+          >
             <img alt="" className="w-full h-full object-cover" src={imgLine3} />
-          </div>
+          </motion.div>
 
           {/* Cards */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15, rotate: -2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+            whileHover={{ rotate: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
             className="absolute left-0 top-0 w-[367px] h-[487px] cursor-pointer group"
-            style={{ transform: 'rotate(-2deg)' }}
           >
             <div
-              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg"
               style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
             >
               <div className="relative w-full h-full rounded-md overflow-hidden">
-                <img alt="Exciting Events" className="absolute w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle3} />
+                <Image alt="Exciting Events" className="object-cover" src={imgRectangle3} fill sizes="367px" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
@@ -199,19 +220,19 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15, rotate: 1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 1 }}
+            whileHover={{ rotate: -2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
             className="absolute left-[594px] top-[464px] w-[367px] h-[487px] cursor-pointer group"
-            style={{ transform: 'rotate(1deg)' }}
           >
             <div
-              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg"
               style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
             >
               <div className="relative w-full h-full rounded-md overflow-hidden">
-                <img alt="Fantasy Fits" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle7} />
+                <Image alt="Fantasy Fits" className="object-cover" src={imgRectangle7} fill sizes="367px" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
@@ -221,19 +242,19 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15, rotate: -1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -1 }}
+            whileHover={{ rotate: 2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
             className="absolute left-[107px] top-[752px] w-[367px] h-[487px] cursor-pointer group"
-            style={{ transform: 'rotate(-1deg)' }}
           >
             <div
-              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg"
               style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
             >
               <div className="relative w-full h-full rounded-md overflow-hidden">
-                <img alt="Whacky Whatevers" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle8} />
+                <Image alt="Whacky Whatevers" className="object-cover" src={imgRectangle8} fill sizes="367px" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
@@ -243,19 +264,19 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15, rotate: 2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+            whileHover={{ rotate: -1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
             className="absolute left-[714px] top-[1195px] w-[365px] h-[485px] cursor-pointer group"
-            style={{ transform: 'rotate(2deg)' }}
           >
             <div
-              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg transition-transform duration-300 hover:scale-[1.02] hover:-translate-y-1"
+              className="relative w-full h-full bg-white p-3 pb-16 rounded-lg"
               style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
             >
               <div className="relative w-full h-full rounded-md overflow-hidden">
-                <img alt="Outlandish Octopuses" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src={imgRectangle9} />
+                <Image alt="Outlandish Octopuses" className="object-cover" src={imgRectangle9} fill sizes="365px" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
@@ -265,7 +286,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* More clouds with CSS animations */}
+        {/* More clouds */}
         <Cloud className="absolute left-[850px] top-[800px] w-[630px] h-[490px] pointer-events-none" width={630} height={490} fluffiness={2.5} seed={10} animClass="cloud-anim-3" />
         <Cloud className="absolute left-[1020px] top-[1000px] w-[670px] h-[365px] pointer-events-none" width={670} height={365} fluffiness={2.2} seed={11} animClass="cloud-anim-4" />
         <Cloud className="absolute left-[380px] top-[1180px] w-[700px] h-[390px] pointer-events-none" width={700} height={390} fluffiness={2.3} seed={9} animClass="cloud-anim-1" />
@@ -280,7 +301,7 @@ export default function Home() {
 
         {/* Rainbow */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[2797px] w-[1520px] h-[847px] pointer-events-none">
-          <img alt="" className="w-full h-full object-cover" src={imgRainbow} />
+          <Image alt="Rainbow" className="object-cover" src={imgRainbow} fill sizes="1520px" loading="lazy" />
         </div>
 
         {/* Large clouds near rainbow */}
@@ -291,13 +312,13 @@ export default function Home() {
 
         {/* Hills */}
         <div className="absolute left-[-48px] top-[3187px] w-[1536px] h-[1024px] pointer-events-none z-10">
-          <img alt="" className="w-full h-full object-cover" src={imgHills} />
+          <Image alt="Hills" className="object-cover" src={imgHills} fill sizes="1536px" loading="lazy" />
         </div>
       </div>
 
       {/* Tentacles & Text Section */}
       <div className="absolute left-0 top-[2844px] w-full h-[1274px] z-20">
-        <img alt="" className="w-full h-full object-cover" src={imgTentaclesText} />
+        <Image alt="Tentacles" className="object-cover" src={imgTentaclesText} fill sizes="100vw" loading="lazy" />
         <p
           className="absolute left-1/2 -translate-x-1/2 top-[410px] w-[476px] text-center text-white text-[40px] z-30"
           style={{ fontFamily: 'Cooper Black, serif' }}
@@ -329,10 +350,14 @@ export default function Home() {
               className="absolute left-[132px] top-[211px] w-[558px] h-[389px] rounded-[40px] overflow-hidden"
               style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
             >
-              <img
+              <Image
                 alt="Store front"
-                className="absolute left-0 top-0 w-[106.13%] h-[109.07%] object-cover"
+                className="object-cover"
                 src={imgFrame4}
+                fill
+                sizes="558px"
+                loading="lazy"
+                style={{ transform: 'scale(1.06)' }}
               />
             </div>
 
