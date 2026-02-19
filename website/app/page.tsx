@@ -5,7 +5,6 @@ import { memo } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import ProceduralCloud from "@/components/ProceduralCloud";
-
 const imgRainbow = "/images/rainbow.png";
 const imgHills = "/images/hills.png";
 const imgTentaclesText = "/images/tentacles-text.png";
@@ -19,12 +18,10 @@ const imgRectangle8 = "/images/card-whacky-whatevers.png";
 const imgRectangle9 = "/images/card-outlandish-octopuses.png";
 const imgRectangle1 = "/images/hero-background.png";
 const imgEllipse1 = "/images/badge.png";
-// const imgInlandoctopuslargelogo1 = "/images/logo.png"; // Moved to Navbar
 const imgVector = "/images/instagram.svg";
 const imgVector1 = "/images/facebook.svg";
 const imgOverlay = "/images/overlay.svg";
 
-// Memoized cloud wrapper to prevent re-renders
 const Cloud = memo(({
   className,
   width,
@@ -47,10 +44,10 @@ const Cloud = memo(({
 Cloud.displayName = 'Cloud';
 
 export default function Home() {
-  // handleScrollToLocation removed - handled by Navbar Link
 
   return (
     <div className="relative w-full min-h-screen bg-[#f5f5f5] overflow-x-hidden">
+      {/* Sky gradient background */}
       <div
         className="absolute top-0 left-0 w-full"
         style={{
@@ -67,22 +64,22 @@ export default function Home() {
             #5db5ed 85%,
             #70bfef 100%
           )`,
-          height: '4379px',
+          height: '100%',
           zIndex: 0
         }}
       />
 
-      {/* Subtle atmospheric haze overlay */}
+      {/* Radial overlay */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse 150% 50% at 50% 60%, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          height: '4379px',
+          height: '100%',
           zIndex: 1
         }}
       />
 
-      {/* Sun glow effect */}
+      {/* Sun glow */}
       <div
         className="absolute pointer-events-none sun-glow"
         style={{
@@ -97,12 +94,11 @@ export default function Home() {
         }}
       />
 
-      {/* Fixed Navbar */}
       <Navbar />
 
-      <div className="relative w-[1440px] mx-auto z-10" style={{ height: '4118px' }}>
+      {/* ==================== DESKTOP LAYOUT ==================== */}
+      <div className="hidden lg:block relative w-[1440px] mx-auto z-10" style={{ height: '4030px' }}>
 
-        {/* Hero Section */}
         <div className="absolute left-[60px] top-[100px] w-[1320px] h-[708px] z-10 overflow-hidden rounded-[40px] group" style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.5)' }}>
           <div className="relative w-full h-full">
             <Image
@@ -162,11 +158,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Clouds */}
+        {/* Desktop Clouds */}
         <Cloud className="absolute left-[-150px] top-[691px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.5} seed={12} animClass="cloud-anim-1" />
         <Cloud className="absolute left-[1000px] top-[680px] w-[530px] h-[310px] pointer-events-none" width={530} height={310} fluffiness={2} seed={42} animClass="cloud-anim-2" />
 
-        {/* Gallery Section */}
+        {/* Desktop Gallery Section */}
         <div className="absolute left-[180.5px] top-[931px] w-full h-[1680px]">
           <motion.div
             initial={{ opacity: 0 }}
@@ -196,7 +192,7 @@ export default function Home() {
             <img alt="" className="w-full h-full object-cover" src={imgLine3} />
           </motion.div>
 
-          {/* Cards */}
+          {/* Desktop Cards */}
           <motion.div
             initial={{ opacity: 0, y: 15, rotate: -2 }}
             whileInView={{ opacity: 1, y: 0, rotate: -2 }}
@@ -286,7 +282,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* More clouds */}
+        {/* Desktop clouds */}
         <Cloud className="absolute left-[850px] top-[800px] w-[630px] h-[490px] pointer-events-none" width={630} height={490} fluffiness={2.5} seed={10} animClass="cloud-anim-3" />
         <Cloud className="absolute left-[1020px] top-[1000px] w-[670px] h-[365px] pointer-events-none" width={670} height={365} fluffiness={2.2} seed={11} animClass="cloud-anim-4" />
         <Cloud className="absolute left-[380px] top-[1180px] w-[700px] h-[390px] pointer-events-none" width={700} height={390} fluffiness={2.3} seed={9} animClass="cloud-anim-1" />
@@ -299,25 +295,25 @@ export default function Home() {
         <Cloud className="absolute left-[1070px] top-[2310px] w-[730px] h-[365px] pointer-events-none" width={730} height={365} fluffiness={2.4} seed={4} animClass="cloud-anim-2" />
         <Cloud className="absolute left-[80px] top-[2340px] w-[785px] h-[475px] pointer-events-none" width={785} height={475} fluffiness={2.6} seed={2} animClass="cloud-anim-3" />
 
-        {/* Rainbow */}
+        {/* Desktop Rainbow */}
         <div className="absolute left-1/2 -translate-x-1/2 top-[2797px] w-[1520px] h-[847px] pointer-events-none">
           <Image alt="Rainbow" className="object-cover" src={imgRainbow} fill sizes="1520px" loading="lazy" />
         </div>
 
-        {/* Large clouds near rainbow */}
+        {/* Desktop large clouds near rainbow */}
         <Cloud className="absolute left-[820px] top-[2620px] w-[1260px] h-[755px] pointer-events-none" width={1260} height={755} fluffiness={3} seed={15} animClass="cloud-anim-4" />
         <Cloud className="absolute left-[-280px] top-[2770px] w-[870px] h-[475px] pointer-events-none" width={870} height={475} fluffiness={2.6} seed={13} animClass="cloud-anim-5" />
         <Cloud className="absolute left-[230px] top-[2700px] w-[770px] h-[490px] pointer-events-none" width={770} height={490} fluffiness={2.5} seed={99} animClass="cloud-anim-6" />
         <Cloud className="absolute left-[-160px] top-[2950px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.4} seed={100} animClass="cloud-anim-1" />
 
-        {/* Hills */}
-        <div className="absolute left-[-48px] top-[3187px] w-[1536px] h-[1024px] pointer-events-none z-10">
+        {/* Desktop Hills */}
+        <div className="absolute left-[-48px] top-[3006px] w-[1536px] h-[1024px] pointer-events-none z-10">
           <Image alt="Hills" className="object-cover" src={imgHills} fill sizes="1536px" loading="lazy" />
         </div>
       </div>
 
-      {/* Tentacles & Text Section */}
-      <div className="absolute left-0 top-[2844px] w-full h-[1274px] z-20">
+      {/* Desktop Tentacles & Text Section */}
+      <div className="hidden lg:block absolute left-0 top-[2844px] w-full h-[1274px] z-20">
         <Image alt="Tentacles" className="object-cover" src={imgTentaclesText} fill sizes="100vw" loading="lazy" />
         <p
           className="absolute left-1/2 -translate-x-1/2 top-[410px] w-[476px] text-center text-white text-[40px] z-30"
@@ -327,7 +323,212 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Location Section */}
+      {/* ==================== MOBILE LAYOUT ==================== */}
+      <div className="lg:hidden relative z-10">
+
+        {/* Mobile Hero */}
+        <div
+          className="relative mx-4 mt-[90px] rounded-[20px] overflow-hidden group"
+          style={{ boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.5)', height: 'clamp(250px, 65vw, 400px)' }}
+        >
+          <div className="relative w-full h-full">
+            <Image
+              alt="Hero background"
+              className="object-cover"
+              src={imgRectangle1}
+              fill
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0">
+              <img alt="" className="w-full h-full" src={imgOverlay} />
+            </div>
+            {/* <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-[16px] text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+              [train video here]
+            </p> */}
+          </div>
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <p
+                className="text-[#f5f5f5] text-[42px] sm:text-[56px] text-center"
+                style={{ fontFamily: 'Cooper Black, serif', lineHeight: '0.9', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+              >
+                Inland Octopus
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <p
+                className="text-[#f5f5f5] text-[16px] sm:text-[20px] tracking-wider text-center"
+                style={{ fontFamily: 'Copperplate, Copperplate Gothic Light, fantasy', lineHeight: '0.9', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+              >
+                UNIQUE TOYS AND GIFTS
+              </p>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile Clouds (3-4 only) */}
+        <Cloud className="absolute left-[-60px] top-[340px] w-[250px] h-[160px] pointer-events-none" width={250} height={160} fluffiness={2.2} seed={12} animClass="cloud-anim-1" />
+        <Cloud className="absolute right-[-80px] top-[850px] w-[280px] h-[170px] pointer-events-none" width={280} height={170} fluffiness={2} seed={42} animClass="cloud-anim-2" />
+        <Cloud className="absolute left-[-70px] top-[1400px] w-[260px] h-[160px] pointer-events-none" width={260} height={160} fluffiness={2.3} seed={9} animClass="cloud-anim-3" />
+        <Cloud className="absolute right-[-60px] top-[1950px] w-[300px] h-[190px] pointer-events-none" width={300} height={190} fluffiness={2.5} seed={15} animClass="cloud-anim-4" />
+
+        {/* Mobile Cards - vertical stack, no lines */}
+        <div className="flex flex-col items-center gap-8 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 15, rotate: -2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+            whileHover={{ rotate: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="w-[280px] h-[370px] sm:w-[320px] sm:h-[420px] cursor-pointer group relative"
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-14 rounded-lg"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <Image alt="Exciting Events" className="object-cover" src={imgRectangle3} fill sizes="320px" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[18px] bottom-[16px] text-gray-800 text-[20px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Exciting Events
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15, rotate: 1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 1 }}
+            whileHover={{ rotate: -2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="w-[280px] h-[370px] sm:w-[320px] sm:h-[420px] cursor-pointer group relative"
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-14 rounded-lg"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <Image alt="Fantasy Fits" className="object-cover" src={imgRectangle7} fill sizes="320px" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[18px] bottom-[16px] text-gray-800 text-[20px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Fantasy Fits
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15, rotate: -1 }}
+            whileInView={{ opacity: 1, y: 0, rotate: -1 }}
+            whileHover={{ rotate: 2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="w-[280px] h-[370px] sm:w-[320px] sm:h-[420px] cursor-pointer group relative"
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-14 rounded-lg"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <Image alt="Whacky Whatevers" className="object-cover" src={imgRectangle8} fill sizes="320px" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[18px] bottom-[16px] text-gray-800 text-[20px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Whacky Whatevers
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15, rotate: 2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+            whileHover={{ rotate: -1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="w-[280px] h-[370px] sm:w-[320px] sm:h-[420px] cursor-pointer group relative"
+          >
+            <div
+              className="relative w-full h-full bg-white p-3 pb-14 rounded-lg"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)' }}
+            >
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <Image alt="Outlandish Octopuses" className="object-cover" src={imgRectangle9} fill sizes="320px" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </div>
+            <p className="absolute left-[18px] bottom-[16px] text-gray-800 text-[20px]" style={{ fontFamily: 'Cooper Black, serif' }}>
+              Outlandish Octopuses*
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Mobile Rainbow + Hills + Tentacles landscape scene */}
+        <div className="relative w-full overflow-hidden">
+          {/* Rainbow */}
+          <div className="relative w-full">
+            <Image
+              alt="Rainbow"
+              src={imgRainbow}
+              width={1520}
+              height={847}
+              className="w-full h-auto"
+              style={{ width: '100%', height: 'auto' }}
+              sizes="100vw"
+              loading="lazy"
+            />
+          </div>
+
+          <p
+            className="absolute left-1/2 -translate-x-1/2 top-[40%] w-[85%] text-center text-white text-[18px] sm:text-[24px] z-30"
+            style={{ fontFamily: 'Cooper Black, serif' }}
+          >
+            {`Walla Walla's premier purveyor of fun, foolishness, & always free gift wrapping since 2004.`}
+          </p>
+
+          {/* Hills - overlapping with rainbow */}
+          <div className="relative w-full z-[5]">
+            <Image
+              alt="Hills"
+              src={imgHills}
+              width={1536}
+              height={1024}
+              className="w-full h-auto"
+              style={{ width: '100%', height: 'auto' }}
+              sizes="100vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* Mobile Tentacles + Text - overlapping with hills */}
+        <div className="relative w-full -mt-[88%] z-20">
+          <Image
+            alt="Tentacles"
+            src={imgTentaclesText}
+            width={1440}
+            height={1274}
+            className="w-full h-auto"
+            style={{ width: '100%', height: 'auto' }}
+            sizes="100vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* ==================== LOCATION SECTION (responsive) ==================== */}
       <div className="relative w-full z-20">
         <div
           id="location"
@@ -338,48 +539,50 @@ export default function Home() {
             boxShadow: '0px -10px 20px 0px rgba(0,0,0,0.25), 0px 10px 20px 0px rgba(0,0,0,0.25)'
           }}
         >
-          <div className="relative w-full max-w-[1440px] mx-auto h-[824px]">
+          <div className="relative w-full max-w-[1440px] mx-auto flex flex-col items-center pt-10 pb-8 lg:pt-[86px] lg:pb-[34px] px-4 lg:px-0">
             <p
-              className="absolute left-1/2 -translate-x-1/2 top-[86px] text-center text-black text-[48px] whitespace-nowrap"
+              className="text-center text-black text-[24px] sm:text-[32px] lg:text-[48px] mb-6 lg:mb-[67px]"
               style={{ fontFamily: 'Cooper Black, serif' }}
             >
               Find us in beautiful downtown Walla Walla!
             </p>
 
-            <div
-              className="absolute left-[132px] top-[211px] w-[558px] h-[389px] rounded-[40px] overflow-hidden"
-              style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
-            >
-              <Image
-                alt="Store front"
-                className="object-cover"
-                src={imgFrame4}
-                fill
-                sizes="558px"
-                loading="lazy"
-                style={{ transform: 'scale(1.06)' }}
-              />
+            <div className="flex flex-col lg:flex-row gap-5 lg:gap-[60px] w-full items-center justify-center">
+              <div
+                className="relative w-full max-w-[558px] h-[250px] sm:h-[300px] lg:h-[389px] rounded-[20px] lg:rounded-[40px] overflow-hidden"
+                style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
+              >
+                <Image
+                  alt="Store front"
+                  className="object-cover"
+                  src={imgFrame4}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 558px"
+                  loading="lazy"
+                  style={{ transform: 'scale(1.06)' }}
+                />
+              </div>
+
+              <div
+                className="relative w-full max-w-[558px] h-[250px] sm:h-[300px] lg:h-[389px] rounded-[20px] lg:rounded-[40px] overflow-hidden"
+                style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
+              >
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Inland%20Octopus%20Walla%20Walla&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+                ></iframe>
+              </div>
             </div>
 
-            <div
-              className="absolute left-[750px] top-[211px] w-[558px] h-[389px] rounded-[40px] overflow-hidden"
-              style={{ boxShadow: '0px 10px 20px 0px rgba(0,0,0,0.25)' }}
-            >
-              <iframe
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Inland%20Octopus%20Walla%20Walla&t=&z=15&ie=UTF8&iwloc=B&output=embed"
-              ></iframe>
-            </div>
-
-            <div className="absolute left-1/2 -translate-x-1/2 top-[650px] text-center">
-              <p className="font-bold text-[24px] text-black mb-[10px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <div className="text-center mt-6 lg:mt-[50px]">
+              <p className="font-bold text-[18px] lg:text-[24px] text-black mb-[10px]" style={{ fontFamily: 'Inter, sans-serif' }}>
                 7 E Main St, Walla Walla, WA 99362
               </p>
-              <p className="font-light text-[24px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <p className="font-light text-[18px] lg:text-[24px] text-black" style={{ fontFamily: 'Inter, sans-serif' }}>
                 Open 10-5 Tuesday through Sunday
               </p>
             </div>
@@ -387,9 +590,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* ==================== FOOTER (responsive) ==================== */}
       <div className="relative w-full bg-[#49aeec] z-20">
-        <div className="relative w-full mx-auto flex flex-col items-center justify-center py-20 gap-[25px]">
+        <div className="relative w-full mx-auto flex flex-col items-center justify-center py-12 lg:py-20 gap-[20px] lg:gap-[25px] px-4">
           <div className="flex gap-[10px]">
             <a href="https://www.instagram.com/inlandoctopus/" className="block w-[30px] h-[30px]">
               <img alt="Instagram" className="w-full h-full" src={imgVector} />
@@ -398,10 +601,10 @@ export default function Home() {
               <img alt="Facebook" className="w-full h-full" src={imgVector1} />
             </a>
           </div>
-          <p className="w-[595px] text-center text-white text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="w-full max-w-[595px] text-center text-white text-[14px] lg:text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
             *Yes, it is Octopuses (not Octopi). I promise. But Octopi is a fun word!
           </p>
-          <p className="w-[595px] text-center text-white text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="w-full max-w-[595px] text-center text-white text-[14px] lg:text-[16px] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
             {`© 2025 Inland Octopus. Made with <3`}
           </p>
         </div>
