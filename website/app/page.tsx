@@ -296,8 +296,8 @@ export default function Home() {
         <Cloud className="absolute left-[80px] top-[2340px] w-[785px] h-[475px] pointer-events-none" width={785} height={475} fluffiness={2.6} seed={2} animClass="cloud-anim-3" />
 
         {/* Desktop Rainbow */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-[2797px] w-[1520px] h-[847px] pointer-events-none">
-          <Image alt="Rainbow" className="object-cover" src={imgRainbow} fill sizes="1520px" loading="lazy" />
+        <div className="absolute top-[2797px] h-[847px] pointer-events-none" style={{ left: '50%', transform: 'translateX(-50%)', width: 'max(1520px, 100vw)' }}>
+          <Image alt="Rainbow" className="object-cover" src={imgRainbow} fill sizes="max(1520px, 100vw)" loading="lazy" />
         </div>
 
         {/* Desktop large clouds near rainbow */}
@@ -307,8 +307,8 @@ export default function Home() {
         <Cloud className="absolute left-[-160px] top-[2950px] w-[700px] h-[450px] pointer-events-none" width={700} height={450} fluffiness={2.4} seed={100} animClass="cloud-anim-1" />
 
         {/* Desktop Hills */}
-        <div className="absolute left-[-48px] top-[3006px] w-[1536px] h-[1024px] pointer-events-none z-10">
-          <Image alt="Hills" className="object-cover" src={imgHills} fill sizes="1536px" loading="lazy" />
+        <div className="absolute top-[3006px] h-[1024px] pointer-events-none z-10" style={{ left: '50%', transform: 'translateX(-50%)', width: 'max(1536px, 100vw)' }}>
+          <Image alt="Hills" className="object-cover" src={imgHills} fill sizes="max(1536px, 100vw)" loading="lazy" />
         </div>
       </div>
 
