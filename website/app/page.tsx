@@ -296,7 +296,7 @@ export default function Home() {
         <Cloud className="absolute left-[80px] top-[2340px] w-[785px] h-[475px] pointer-events-none" width={785} height={475} fluffiness={2.6} seed={2} animClass="cloud-anim-3" />
 
         {/* Desktop Rainbow */}
-        <div className="absolute top-[2797px] pointer-events-none" style={{ left: '50%', transform: 'translateX(-50%)', width: 'max(1520px, 100vw)', aspectRatio: '1520 / 847' }}>
+        <div className="absolute top-[2697px] pointer-events-none" style={{ left: '50%', transform: 'translateX(-50%)', width: 'max(1520px, 100vw)', aspectRatio: '1520 / 847' }}>
           <Image alt="Rainbow" className="object-cover" src={imgRainbow} fill sizes="max(1520px, 100vw)" loading="lazy" />
         </div>
 
